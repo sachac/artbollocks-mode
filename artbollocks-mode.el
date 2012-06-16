@@ -250,10 +250,12 @@
 (defun artbollocks-count-words (&optional start end)
   "Count the number of words between START and END."
   (interactive "r")
+  (if (called-interactively-p 'any)
+      (unless (use-region-p) (setq start (point-min) end (point-max))))
   (let ((result
          (if (fboundp 'count-words)
-             (count-words (or start (point-min)) (or end (point-max)))
-           (how-many "\\w+" (point-min) (point-max)))))
+             (count-words start end)
+           (how-many "\\w+" start end))))
     (if (interactive-p)
         (message "Word count: %s" result))
     result))
@@ -261,8 +263,10 @@
 (defun artbollocks-count-sentences (&optional start end)
   "Count the number of words between START and END."
   (interactive "r")
+  (if (called-interactively-p 'any)
+      (unless (use-region-p) (setq start (point-min) end (point-max))))
   (let ((result
-         (how-many "\\w[!?.]" (or start (point-min)) (or end (point-max)))))
+         (how-many "\\w[!?.]" start end)))
     (if (interactive-p)
         (message "Sentence count: %s" result))
     result))
@@ -293,16 +297,22 @@
 (defun artbollocks-readability-index (&optional start end)
   "Determine the automated readability index between START and END."
   (interactive "r")
+  (if (called-interactively-p 'any)
+      (unless (use-region-p) (setq start (point-min) end (point-max))))
   (message "Readability index: %s" (artbollocks-automated-readability-index start end)))
 
 (defun artbollocks-reading-ease (&optional start end)
   "Determine the Flesch reading ease between START and END."
-  (interactive)
+  (interactive "r")
+  (if (called-interactively-p 'any)
+      (unless (use-region-p) (setq start (point-min) end (point-max))))
   (message "Reading ease: %s" (artbollocks-flesch-reading-ease start end)))
 
 (defun artbollocks-grade-level (&optional start end)
   "Determine the Flesch-Kinkaid grade level between START and END."
-  (interactive)
+  (interactive "r")
+  (if (called-interactively-p 'any)
+      (unless (use-region-p) (setq start (point-min) end (point-max))))
   (message "Grade level: %s" (artbollocks-flesch-kinkaid-grade-level start end)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
