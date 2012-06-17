@@ -1,4 +1,5 @@
-;; artbollocks-mode.el - A minor mode to guide writers
+;;; artbollocks-mode.el --- A minor mode to guide writers
+;;
 ;; Minor changes (c) 2012 Sacha Chua <sacha@sachachua.com>
 ;; Copyright (c) 2011,2012 Rob Myers <rob@robmyers.org>
 ;;
@@ -30,6 +31,8 @@
 ;; Isabel Brison (alterity, mise en abyme)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; Commentary:
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Usage
 ;;
@@ -48,6 +51,8 @@
 ;;
 ;;   M-x font-lock-fontify-buffer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Customization
