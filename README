@@ -1,0 +1,32 @@
+artbollocks-mode.el
+===================
+
+artbollocks-mode.el is an emacs minor mode for avoiding cliche and bad grammar
+when writing about art.
+
+Installation
+============
+
+Place artbollocks-mode.el in a directory on Emacs' load-path, and add the
+following to your .emacs file:
+
+(autoload 'artbollocks-mode "artbollocks-mode")
+
+If you wish artbollocks-mode to be loaded automatically, add the following
+to your .emacs file immediately after the autoload statement:
+
+(add-hook 'text-mode-hook 'turn-on-artbollocks-mode)
+(add-hook 'org-mode-hook 'turn-on-artbollocks-mode)
+
+Manual Usage
+============
+
+If you do not add the add-hook statements to your .emacs file, you will have to
+enable artbollocks-mode manually  by typing the following in Emacs:
+
+M-x artbollocks-mode
+
+NOTE: If you manually enable artbollocks-mode, you you might need to force
+re-fontification initially. To do so, type the following in Eamcs:
+
+M-x font-lock-fontify-buffer
