@@ -1,7 +1,7 @@
-;;; artbollocks-mode.el --- A minor mode to guide writers
+;;; artbollocks-mode.el --- A minor mode to guide art writers.
 ;;
-;; Minor changes (c) 2012 Sacha Chua <sacha@sachachua.com>
 ;; Copyright (c) 2011,2012 Rob Myers <rob@robmyers.org>
+;; Minor changes (c) 2012 Sacha Chua <sacha@sachachua.com>
 ;;
 ;; Based on fic-mode.el
 ;; Copyright (C) 2010, Trey Jackson <bigfaceworm(at)gmail(dot)com>
@@ -198,16 +198,16 @@
       t)))
 
 (defun artbollocks-lexical-illusions-search-for-keyword (limit)
-  (search-for-keyword artbollocks-lexical-illusions-regex limit))
+  (artbollocks-search-for-keyword artbollocks-lexical-illusions-regex limit))
 
 (defun artbollocks-passive-voice-search-for-keyword (limit)
-  (search-for-keyword artbollocks-passive-voice-regex limit))
+  (artbollocks-search-for-keyword artbollocks-passive-voice-regex limit))
 
 (defun artbollocks-weasel-words-search-for-keyword (limit)
-  (search-for-keyword artbollocks-weasel-words-regex limit))
+  (artbollocks-search-for-keyword artbollocks-weasel-words-regex limit))
 
-(defun artbollocks-search-for-keyword (limit)
-  (search-for-keyword artbollocks-jargon-regex limit))
+(defun artbollocks-search-for-jargon (limit)
+  (artbollocks-search-for-keyword artbollocks-jargon-regex limit))
 
 (defconst artbollocks-lexicalkwlist
   '((artbollocks-lexical-illusions-search-for-keyword 
@@ -222,7 +222,7 @@
      (0 'artbollocks-font-lock-weasel-words-face t))))
 
 (defconst artbollocks-kwlist
-  '((artbollocks-search-for-keyword 
+  '((artbollocks-search-for-jargon 
      (0 'artbollocks-font-lock-artbollocks-face t))))
 
 (defun artbollocks-add-keywords ()
@@ -232,7 +232,7 @@
     (font-lock-add-keywords nil artbollocks-passivekwlist))
   (when artbollocks-weasel-words
     (font-lock-add-keywords nil artbollocks-weaselkwlist))
-  (when artbollocks
+  (when artbollocks-jargon
     (font-lock-add-keywords nil artbollocks-kwlist)))
 
 (defun artbollocks-remove-keywords ()
@@ -325,6 +325,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defconst artbollocks-mode-keymap (make-keymap))
+
 (define-key artbollocks-mode-keymap (kbd "C-c [") 'artbollocks-word-count)
 (define-key artbollocks-mode-keymap (kbd "C-c ]") 'artbollocks-sentence-count)
 (define-key artbollocks-mode-keymap (kbd "C-c \\") 'artbollocks-readability-index)
