@@ -39,8 +39,8 @@
 ;; To use, save artbollocks-mode.el to a directory in your load-path.
 ;;
 ;; (require 'artbollocks-mode)
-;; (add-hook 'text-mode-hook 'turn-on-artbollocks-mode)
-;; (add-hook 'org-mode-hook 'turn-on-artbollocks-mode)
+;; (add-hook 'text-mode-hook 'artbollocks-mode)
+;; (add-hook 'org-mode-hook 'artbollocks-mode)
 ;;
 ;; or
 ;;
@@ -194,7 +194,7 @@
 	    (setq match-data-to-set (match-data))))
     (when match-data-to-set
       (set-match-data match-data-to-set)
-      (goto-char (match-end 0)) 
+      (goto-char (match-end 0))
       t)))
 
 (defun artbollocks-lexical-illusions-search-for-keyword (limit)
@@ -210,19 +210,19 @@
   (artbollocks-search-for-keyword artbollocks-jargon-regex limit))
 
 (defconst artbollocks-lexicalkwlist
-  '((artbollocks-lexical-illusions-search-for-keyword 
+  '((artbollocks-lexical-illusions-search-for-keyword
      (2 'artbollocks-font-lock-lexical-illusions-face t))))
 
 (defconst artbollocks-passivekwlist
-  '((artbollocks-passive-voice-search-for-keyword 
+  '((artbollocks-passive-voice-search-for-keyword
      (0 'artbollocks-font-lock-passive-voice-face t))))
 
 (defconst artbollocks-weaselkwlist
-  '((artbollocks-weasel-words-search-for-keyword 
+  '((artbollocks-weasel-words-search-for-keyword
      (0 'artbollocks-font-lock-weasel-words-face t))))
 
 (defconst artbollocks-kwlist
-  '((artbollocks-search-for-jargon 
+  '((artbollocks-search-for-jargon
      (0 'artbollocks-font-lock-artbollocks-face t))))
 
 (defun artbollocks-add-keywords ()
