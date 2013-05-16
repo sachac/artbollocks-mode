@@ -290,7 +290,7 @@
        (* 1.015 (/ words (artbollocks-count-sentences start end)))
        (* 84.6 (/ (artbollocks-count-syllables start end) words)))))
 
-(defun artbollocks-flesch-kinkaid-grade-level ()
+(defun artbollocks-flesch-kinkaid-grade-level (&optional start end)
   (let ((words (float (artbollocks-count-words start end))))
     (- (+ (* 11.8 (/ (artbollocks-count-syllables start end) words))
 	  (* 0.39 (/ words (artbollocks-count-sentences start end))))
