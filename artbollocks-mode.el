@@ -279,19 +279,19 @@
 ;; FIXME: Avoid divide by zero where document is empty or small
 
 (defun artbollocks-automated-readability-index (&optional start end)
-  (let ((words (artbollocks-count-words start end)))
+  (let ((words (float (artbollocks-count-words start end))))
     (- (+ (* 4.71 (/ (artbollocks-count-letters start end) words))
 	  (* 0.5 (/ words (artbollocks-count-sentences start end))))
        21.43)))
 
 (defun artbollocks-flesch-reading-ease (&optional start end)
-  (let ((words (artbollocks-count-words start end)))
+  (let ((words (float (artbollocks-count-words start end))))
     (- 206.834
        (* 1.015 (/ words (artbollocks-count-sentences start end)))
        (* 84.6 (/ (artbollocks-count-syllables start end) words)))))
 
 (defun artbollocks-flesch-kinkaid-grade-level ()
-  (let ((words (artbollocks-count-words start end)))
+  (let ((words (float (artbollocks-count-words start end))))
     (- (+ (* 11.8 (/ (artbollocks-count-syllables start end) words))
 	  (* 0.39 (/ words (artbollocks-count-sentences start end))))
        15.59)))
