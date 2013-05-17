@@ -296,7 +296,7 @@
 	  (* 0.39 (/ words (artbollocks-count-sentences start end))))
        15.59)))
 
-(defalias 'artbollocks-word-count 'artbollocks-count-word)
+(defalias 'artbollocks-word-count 'artbollocks-count-words)
 (defalias 'artbollocks-sentence-count 'artbollocks-count-sentences)
 
 (defun artbollocks-readability-index (&optional start end)
