@@ -242,6 +242,19 @@
   (font-lock-remove-keywords nil artbollocks-kwlist))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Utility macros
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defmacro interactive-optional-region ()
+  "Flexible variation of (interactive \"r\").
+Bind START and END parameters to either a selected region or the
+entire buffer, subject to narrowing."
+  `(interactive
+    (if (use-region-p)
+        (list (region-beginning) (region-end))
+      (list (point-min) (point-max)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Text metrics
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -254,25 +267,25 @@
 
 (defun artbollocks-count-words (&optional start end)
   "Count the number of words between START and END."
-  (interactive "r")
-  (if (called-interactively-p 'any)
-      (unless (use-region-p) (setq start (point-min) end (point-max))))
-  (let ((result
-         (if (fboundp 'count-words)
-             (count-words start end)
-           (how-many "\\w+" start end))))
-    (if (interactive-p)
+  (interactive-optional-region)
+  (let* ((s (or start (point-min)))
+         (e (or end (point-max)))
+         (result
+          (if (fboundp 'count-words)
+              (count-words s e)
+            (how-many "\\w+" s e))))
+    (if (called-interactively-p 'any)
         (message "Word count: %s" result))
     result))
 
 (defun artbollocks-count-sentences (&optional start end)
   "Count the number of words between START and END."
-  (interactive "r")
-  (if (called-interactively-p 'any)
-      (unless (use-region-p) (setq start (point-min) end (point-max))))
-  (let ((result
-         (how-many "\\w[!?.]" start end)))
-    (if (interactive-p)
+  (interactive-optional-region)
+  (let* ((s (or start (point-min)))
+         (e (or end (point-max)))
+         (result
+          (how-many "\\w[!?.]" s e)))
+    (if (called-interactively-p 'any)
         (message "Sentence count: %s" result))
     result))
 
@@ -301,23 +314,17 @@
 
 (defun artbollocks-readability-index (&optional start end)
   "Determine the automated readability index between START and END."
-  (interactive "r")
-  (if (called-interactively-p 'any)
-      (unless (use-region-p) (setq start (point-min) end (point-max))))
+  (interactive-optional-region)
   (message "Readability index: %s" (artbollocks-automated-readability-index start end)))
 
 (defun artbollocks-reading-ease (&optional start end)
   "Determine the Flesch reading ease between START and END."
-  (interactive "r")
-  (if (called-interactively-p 'any)
-      (unless (use-region-p) (setq start (point-min) end (point-max))))
+  (interactive-optional-region)
   (message "Reading ease: %s" (artbollocks-flesch-reading-ease start end)))
 
 (defun artbollocks-grade-level (&optional start end)
   "Determine the Flesch-Kinkaid grade level between START and END."
-  (interactive "r")
-  (if (called-interactively-p 'any)
-      (unless (use-region-p) (setq start (point-min) end (point-max))))
+  (interactive-optional-region)
   (message "Grade level: %s" (artbollocks-flesch-kinkaid-grade-level start end)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
