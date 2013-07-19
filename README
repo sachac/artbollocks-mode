@@ -30,3 +30,12 @@ NOTE: If you manually enable artbollocks-mode, you you might need to force
 re-fontification initially. To do so, type the following in Eamcs:
 
 M-x font-lock-fontify-buffer
+
+Art Bollocks Mode highlights those pesky weasel words that slip into
+writing.
+
+To add this to your ~/.emacs.d/init.el or ~/.emacs:
+
+(add-to-list 'load-path "/wherever/you/extracted/artbollocks-mode")
+(require 'artbollocks-mode)
+(add-hook 'text-mode-hook 'artbollocks-mode)
