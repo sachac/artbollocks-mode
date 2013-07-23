@@ -16,7 +16,6 @@ If you wish artbollocks-mode to be loaded automatically, add the following
 to your .emacs file immediately after the autoload statement:
 
 (add-hook 'text-mode-hook 'artbollocks-mode)
-(add-hook 'org-mode-hook 'artbollocks-mode)
 
 Manual Usage
 ============
