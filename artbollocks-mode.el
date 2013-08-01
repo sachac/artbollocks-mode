@@ -40,7 +40,6 @@
 ;;
 ;; (require 'artbollocks-mode)
 ;; (add-hook 'text-mode-hook 'artbollocks-mode)
-;; (add-hook 'org-mode-hook 'artbollocks-mode)
 ;;
 ;; or
 ;;
