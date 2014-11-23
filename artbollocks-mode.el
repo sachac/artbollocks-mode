@@ -3,6 +3,10 @@
 ;; Copyright (c) 2011,2012 Rob Myers <rob@robmyers.org>
 ;; Minor changes (c) 2012 Sacha Chua <sacha@sachachua.com>
 ;;
+;; Author: Rob Myers <rob@robmyers.org>, Sacha Chua <sacha@sachachua.com>
+;; URL: https://github.com/sachac/artbollocks-mode
+;; Version: 1.1.1
+;;
 ;; Based on fic-mode.el
 ;; Copyright (C) 2010, Trey Jackson <bigfaceworm(at)gmail(dot)com>
 ;;
@@ -28,7 +32,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Extra words thanks to:
 ;; Brian van den Broek (contextuality, dialetic, problematize)
-;; Isabel Brison (alterity, mise en abyme)
+;; Isabel Brison (alterity, mise en abîme)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; Commentary:
@@ -354,3 +358,5 @@ entire buffer, subject to narrowing."
 ;; Pluralization
 ;; Incorporate diction commands if available (and advise on installation if not)
 ;; Split general writing back out
+
+;;; artbollocks-mode.el ends here
