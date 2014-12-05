@@ -83,81 +83,25 @@
   :type '(boolean)
   :group 'artbollocks-mode)
 
-;; Lexical illusion face
-
-(defcustom artbollocks-lexical-illusions-foreground-color "black"
-  "Lexical illusions face foreground colour"
+(defface artbollocks-lexical-illusions-face
+  '((t (:foreground "black" :background "magenta")))
+  "The face for lexical illusions words"
   :group 'artbollocks-mode)
 
-(defcustom artbollocks-lexical-illusions-background-color "magenta"
-  "Lexical illusions face background color"
+(defface artbollocks-passive-voice-face
+  '((t (:foreground "Gray" :background "White")))
+  "The face for passive voice words"
   :group 'artbollocks-mode)
 
-(defcustom artbollocks-font-lock-lexical-illusions-face 'font-lock-lexical-illusions-face
-  "The face for lexical illusions in artbollocks mode"
+(defface artbollocks-weasel-words-face
+  '((t (:foreground "Brown" :background "White")))
+  "The face for weasel-words words"
   :group 'artbollocks-mode)
 
-(make-face 'artbollocks-font-lock-lexical-illusions-face)
-(modify-face 'artbollocks-font-lock-lexical-illusions-face
-	     artbollocks-lexical-illusions-foreground-color
-             artbollocks-lexical-illusions-background-color
-	     nil t nil t nil nil)
-
-;; Passive voice face
-
-(defcustom artbollocks-passive-voice-foreground-color "Gray"
-  "Passive voice face foreground colour"
+(defface artbollocks-face
+  '((t (:foreground "Purple" :background "White")))
+  "The face for weasel-words words"
   :group 'artbollocks-mode)
-
-(defcustom artbollocks-passive-voice-background-color "White"
-  "Passive voice face background color"
-  :group 'artbollocks-mode)
-
-(defcustom artbollocks-font-lock-passive-voice-face 'font-lock-passive-voice-face
-  "The face for passive voice words in artbollocks mode"
-  :group 'artbollocks-mode)
-
-(make-face 'artbollocks-font-lock-passive-voice-face)
-(modify-face 'artbollocks-font-lock-passive-voice-face
-             artbollocks-passive-voice-foreground-color
-             artbollocks-passive-voice-background-color nil t nil t nil nil)
-
-;; Weasel words face
-
-(defcustom artbollocks-weasel-words-foreground-color "Brown"
-  "Weasel words face foreground colour"
-  :group 'artbollocks-mode)
-
-(defcustom artbollocks-weasel-words-background-color "White"
-  "Weasel words face background color"
-  :group 'artbollocks-mode)
-
-(defcustom artbollocks-font-lock-weasel-words-face 'artbollocks-font-lock-weasel-words-face
-  "The face for weasel-words words in artbollocks mode"
-  :group 'artbollocks-mode)
-
-(make-face 'artbollocks-font-lock-weasel-words-face)
-(modify-face 'artbollocks-font-lock-weasel-words-face
-             artbollocks-weasel-words-foreground-color
-             artbollocks-weasel-words-background-color nil t nil t nil nil)
-
-;; Artbollocks face
-
-(defcustom artbollocks-foreground-color "Purple"
-  "Font foreground colour"
-  :group 'artbollocks-mode)
-
-(defcustom artbollocks-background-color "White"
-  "Font background color"
-  :group 'artbollocks-mode)
-
-(defcustom artbollocks-font-lock-artbollocks-face 'font-lock-artbollocks-face
-  "The face for artbollocks words in artbollocks mode"
-  :group 'artbollocks-mode)
-
-(make-face 'artbollocks-font-lock-artbollocks-face)
-(modify-face 'artbollocks-font-lock-artbollocks-face artbollocks-foreground-color
-             artbollocks-background-color nil t nil t nil nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Lexical illusions
@@ -214,19 +158,19 @@
 
 (defconst artbollocks-lexicalkwlist
   '((artbollocks-lexical-illusions-search-for-keyword
-     (2 'artbollocks-font-lock-lexical-illusions-face t))))
+     (2 'artbollocks-lexical-illusions-face t))))
 
 (defconst artbollocks-passivekwlist
   '((artbollocks-passive-voice-search-for-keyword
-     (0 'artbollocks-font-lock-passive-voice-face t))))
+     (0 'artbollocks-passive-voice-face t))))
 
 (defconst artbollocks-weaselkwlist
   '((artbollocks-weasel-words-search-for-keyword
-     (0 'artbollocks-font-lock-weasel-words-face t))))
+     (0 'artbollocks-weasel-words-face t))))
 
 (defconst artbollocks-kwlist
   '((artbollocks-search-for-jargon
-     (0 'artbollocks-font-lock-artbollocks-face t))))
+     (0 'artbollocks-face t))))
 
 (defun artbollocks-add-keywords ()
   (when artbollocks-lexical-illusions
