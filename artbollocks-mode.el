@@ -201,6 +201,19 @@ entire buffer, subject to narrowing."
         (list (region-beginning) (region-end))
       (list (point-min) (point-max)))))
 
+(defmacro with-counts (start end &rest body)
+  "Lexically bind WORDS, LETTERS, SYLLABLES, SENTENCES and
+EPSILON as floating point numbers.  With the exception of
+EPSILON, these values are calculated by calling their
+corresponding ARTBOLLOCKS-COUNT-XXX function around START and
+END.  EPSILON is arbitrarily chosen to be 0.0001."
+  `(let ((words (float (artbollocks-count-words start end)))
+         (letters (float (artbollocks-count-letters start end)))
+         (syllables (float (artbollocks-count-syllables start end)))
+         (sentences (float (artbollocks-count-sentences start end)))
+         (epsilon 0.0001))
+     ,@body))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Text metrics
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -236,25 +249,29 @@ entire buffer, subject to narrowing."
         (message "Sentence count: %s" result))
     result))
 
-;; FIXME: Avoid divide by zero where document is empty or small
-
 (defun artbollocks-automated-readability-index (&optional start end)
-  (let ((words (float (artbollocks-count-words start end))))
-    (- (+ (* 4.71 (/ (artbollocks-count-letters start end) words))
-	  (* 0.5 (/ words (artbollocks-count-sentences start end))))
-       21.43)))
+  (with-counts start end
+               (if (or (< words epsilon) (< sentences epsilon))
+                   0.0
+                 (- (+ (* 4.71 (/ letters words))
+                       (* 0.5 (/ words sentences)))
+                    21.43))))
 
 (defun artbollocks-flesch-reading-ease (&optional start end)
-  (let ((words (float (artbollocks-count-words start end))))
-    (- 206.834
-       (* 1.015 (/ words (artbollocks-count-sentences start end)))
-       (* 84.6 (/ (artbollocks-count-syllables start end) words)))))
+  (with-counts start end
+               (if (or (< sentences epsilon) (< words epsilon))
+                   0.0
+                 (- 206.834
+                    (* 1.015 (/ words sentences))
+                    (* 84.6 (/ syllables words))))))
 
 (defun artbollocks-flesch-kinkaid-grade-level (&optional start end)
-  (let ((words (float (artbollocks-count-words start end))))
-    (- (+ (* 11.8 (/ (artbollocks-count-syllables start end) words))
-	  (* 0.39 (/ words (artbollocks-count-sentences start end))))
-       15.59)))
+  (with-counts start end
+               (if (or (< words epsilon) (< sentences epsilon))
+                   0.0
+                 (- (+ (* 11.8 (/ syllables words))
+                       (* 0.39 (/ words sentences)))
+                    15.59))))
 
 (defalias 'artbollocks-word-count 'artbollocks-count-words)
 (defalias 'artbollocks-sentence-count 'artbollocks-count-sentences)
