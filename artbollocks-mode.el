@@ -1,11 +1,11 @@
-;;; artbollocks-mode.el --- A minor mode to guide art writers.
+;;; artbollocks-mode.el --- Improve your writing (especially about art)
 ;;
 ;; Copyright (c) 2011,2012 Rob Myers <rob@robmyers.org>
 ;; Minor changes (c) 2012 Sacha Chua <sacha@sachachua.com>
 ;;
 ;; Author: Rob Myers <rob@robmyers.org>, Sacha Chua <sacha@sachachua.com>
 ;; URL: https://github.com/sachac/artbollocks-mode
-;; Version: 1.1.1
+;; Version: 1.1.2
 ;;
 ;; Based on fic-mode.el
 ;; Copyright (C) 2010, Trey Jackson <bigfaceworm(at)gmail(dot)com>
@@ -15,7 +15,7 @@
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU Affero General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
+;; at your option any later version.
 ;;
 ;; This program is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -30,9 +30,10 @@
 ;; Chua
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Extra words thanks to:
-;; Brian van den Broek (contextuality, dialetic, problematize)
-;; Isabel Brison (alterity, mise en abîme)
+;; Extra thanks to:
+;; Brian van den Broek (words: contextuality, dialetic, problematize)
+;; Isabel Brison (words: alterity, mise en abîme)
+;; mnielsen, behaghel, russell, xfq, gleb, ejmr, tarsius (Emacs Lisp improvements)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; Commentary:
