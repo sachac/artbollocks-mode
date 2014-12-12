@@ -33,7 +33,7 @@
 ;; Extra thanks to:
 ;; Brian van den Broek (words: contextuality, dialetic, problematize)
 ;; Isabel Brison (words: alterity, mise en abîme)
-;; mnielsen, behaghel, russell, xfq, gleb, ejmr, tarsius (Emacs Lisp improvements)
+;; mneilsen, behaghel, russell, xfq, gleb, ejmr, tarsius (Emacs Lisp improvements)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; Commentary:
