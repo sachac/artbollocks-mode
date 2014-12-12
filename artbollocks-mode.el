@@ -236,25 +236,34 @@ entire buffer, subject to narrowing."
         (message "Sentence count: %s" result))
     result))
 
-;; FIXME: Avoid divide by zero where document is empty or small
-
 (defun artbollocks-automated-readability-index (&optional start end)
-  (let ((words (float (artbollocks-count-words start end))))
-    (- (+ (* 4.71 (/ (artbollocks-count-letters start end) words))
-	  (* 0.5 (/ words (artbollocks-count-sentences start end))))
-       21.43)))
+  (let ((words (float (artbollocks-count-words start end)))
+        (letters (float (artbollocks-count-letters start end)))
+        (sentences (float (artbollocks-count-sentences start end))))
+    (if (and (> words 0) (> sentences 0))
+        (- (+ (* 4.71 (/ letters words))
+              (* 0.5 (/ words sentences)))
+           21.43)
+      0.0)))
 
 (defun artbollocks-flesch-reading-ease (&optional start end)
-  (let ((words (float (artbollocks-count-words start end))))
-    (- 206.834
-       (* 1.015 (/ words (artbollocks-count-sentences start end)))
-       (* 84.6 (/ (artbollocks-count-syllables start end) words)))))
+  (let ((words (float (artbollocks-count-words start end)))
+        (sentences (float (artbollocks-count-sentences start end))))
+    (if (and (> sentences 0) (> words 0))
+        (- 206.834
+           (* 1.015 (/ words sentences))
+           (* 84.6 (/ syllables words)))
+      0.0)))
 
 (defun artbollocks-flesch-kinkaid-grade-level (&optional start end)
-  (let ((words (float (artbollocks-count-words start end))))
-    (- (+ (* 11.8 (/ (artbollocks-count-syllables start end) words))
-	  (* 0.39 (/ words (artbollocks-count-sentences start end))))
-       15.59)))
+  (let ((words (float (artbollocks-count-words start end)))
+        (sentences (float (artbollocks-count-sentences start end)))
+        (syllables (float (artbollocks-count-syllables start end))))
+    (if (and (> words 0) (> sentences 0))
+        (- (+ (* 11.8 (/ syllables words))
+              (* 0.39 (/ words sentences)))
+           15.59)
+      0.0)))
 
 (defalias 'artbollocks-word-count 'artbollocks-count-words)
 (defalias 'artbollocks-sentence-count 'artbollocks-count-sentences)
