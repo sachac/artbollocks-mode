@@ -101,7 +101,7 @@
 
 (defface artbollocks-face
   '((t (:foreground "Purple" :background "White")))
-  "The face for weasel-words words"
+  "The face for jargon words"
   :group 'artbollocks-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
