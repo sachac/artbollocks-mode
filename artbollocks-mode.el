@@ -249,7 +249,8 @@ entire buffer, subject to narrowing."
 
 (defun artbollocks-flesch-reading-ease (&optional start end)
   (let ((words (float (artbollocks-count-words start end)))
-        (sentences (float (artbollocks-count-sentences start end))))
+        (sentences (float (artbollocks-count-sentences start end)))
+        (syllables (float (artbollocks-count-syllables start end))))
     (if (and (> sentences 0) (> words 0))
         (- 206.834
            (* 1.015 (/ words sentences))
