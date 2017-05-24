@@ -133,9 +133,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun artbollocks-search-for-keyword (regex limit)
-  "Match REGEX in buffer until LIMIT."
+  "Match REGEX in buffer until LIMIT.
+Search is case-insensitive."
   (let (match-data-to-set
-	found)
+        found
+        (case-fold-search t))
     (save-match-data
       (while (and (null match-data-to-set)
 		  (re-search-forward regex limit t))
