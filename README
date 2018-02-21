@@ -26,7 +26,7 @@ enable artbollocks-mode manually by typing the following in Emacs:
 M-x artbollocks-mode
 
 NOTE: If you manually enable artbollocks-mode, you might need to force
-re-fontification initially. To do so, type the following in Eamcs:
+re-fontification initially. To do so, type the following in Emacs:
 
 M-x font-lock-fontify-buffer
 
