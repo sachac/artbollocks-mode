@@ -306,7 +306,8 @@ entire buffer, subject to narrowing."
   :group 'artbollocks-mode
   (if artbollocks-mode
       (artbollocks-add-keywords)
-    (artbollocks-remove-keywords)))
+    (artbollocks-remove-keywords))
+  (font-lock-flush))
 
 (provide 'artbollocks-mode)
 
