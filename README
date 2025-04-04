@@ -7,6 +7,10 @@ when writing about art (or other topics).
 Installation
 ============
 
+This package is available on MELPA
+
+OR 
+
 Place artbollocks-mode.el in a directory on Emacs' load-path, and add the
 following to your .emacs file:
 
