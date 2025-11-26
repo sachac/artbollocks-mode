@@ -302,7 +302,9 @@ entire buffer, subject to narrowing."
 ;;;###autoload
 (define-minor-mode artbollocks-mode
   "Highlight passive voice, weasel words and artbollocks jargon.
-Provide useful text readability metrics evaluation commands."
+Provide useful text readability metrics evaluation commands.
+
+\\{artbollocks-mode-keymap}"
   :lighter " AB"
   :keymap artbollocks-mode-keymap
   :group 'artbollocks-mode
