@@ -1,4 +1,4 @@
-;;; artbollocks-mode.el --- Improve your writing (especially about art)
+;;; artbollocks-mode.el --- Improve your writing (especially about art) -*- lexical-binding: t; -*-
 ;;
 ;; Copyright (c) 2011,2012 Rob Myers <rob@robmyers.org>
 ;; Minor changes (c) 2012 Sacha Chua <sacha@sachachua.com>
@@ -6,7 +6,8 @@
 ;; Author: Rob Myers <rob@robmyers.org>, Sacha Chua <sacha@sachachua.com>
 ;; URL: https://github.com/sachac/artbollocks-mode
 ;; Version: 1.1.2
-;;
+;; Package-Requires: ((emacs "25.1"))
+
 ;; Based on fic-mode.el
 ;; Copyright (C) 2010, Trey Jackson <bigfaceworm(at)gmail(dot)com>
 ;;
@@ -136,7 +137,6 @@
   "Match REGEX in buffer until LIMIT.
 Search is case-insensitive."
   (let (match-data-to-set
-        found
         (case-fold-search t))
     (save-match-data
       (while (and (null match-data-to-set)
@@ -300,7 +300,12 @@ entire buffer, subject to narrowing."
 (define-key artbollocks-mode-keymap (kbd "C-c =") 'artbollocks-grade-level)
 
 ;;;###autoload
-(define-minor-mode artbollocks-mode "Highlight passive voice, weasel words and artbollocks jargon in text, and provide useful text metrics"
+(define-minor-mode artbollocks-mode
+  "Minor mode that helps improve your writing style.
+Highlight passive voice, weasel words and artbollocks jargon in text,
+and provide useful text metrics.
+
+\\<artbollocks-mode-keymap>"
   :lighter " AB"
   :keymap artbollocks-mode-keymap
   :group 'artbollocks-mode
