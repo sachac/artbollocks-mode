@@ -304,30 +304,30 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(defcustom artbollocks-weasel-words '("\\(\\(are\\|is\\) a number\\)"
-                                      "many"
-                                      "various"
-                                      "very"
-                                      "fairly"
-                                      "several"
-                                      "extremely"
-                                      "exceedingly"
-                                      "quite"
-                                      "remarkably"
-                                      "few"
-                                      "surprisingly"
-                                      "mostly"
-                                      "largely"
-                                      "huge"
-                                      "tiny"
-                                      "excellent"
-                                      "interestingly"
-                                      "significantly"
-                                      "substantially"
-                                      "clearly"
-                                      "vast"
-                                      "relatively"
-                                      "completely")
+(defcustom artbollocks-weasel-words-list '("\\(\\(are\\|is\\) a number\\)"
+                                           "many"
+                                           "various"
+                                           "very"
+                                           "fairly"
+                                           "several"
+                                           "extremely"
+                                           "exceedingly"
+                                           "quite"
+                                           "remarkably"
+                                           "few"
+                                           "surprisingly"
+                                           "mostly"
+                                           "largely"
+                                           "huge"
+                                           "tiny"
+                                           "excellent"
+                                           "interestingly"
+                                           "significantly"
+                                           "substantially"
+                                           "clearly"
+                                           "vast"
+                                           "relatively"
+                                           "completely")
   "Artbollocks weasel words."
   :group 'artbollocks-mode
   :type '(repeat string))
@@ -335,7 +335,7 @@
 (defun artbollocks-weasel-words-regex ()
   "Return the artbollocks weasel word regexp."
   (format "\\b\\(%s\\)\\b"
-          (rx-to-string `(: (or ,@artbollocks-weasel-words)))))
+          (rx-to-string `(: (or ,@artbollocks-weasel-words-list)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Artbollocks
