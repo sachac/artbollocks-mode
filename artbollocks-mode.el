@@ -132,16 +132,28 @@
 ;; Highlighting
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun artbollocks-inside-code-p (&optional pos)
+  "Return non-nil when point or POS is in code, nil if in comment or string.
+Note that this changes the search match data!"
+  (let* ((pos (or pos (point)))
+         (syntax (syntax-ppss pos)))
+    (and (not (nth 3 syntax))
+         (not (nth 4 syntax)))))
+
 (defun artbollocks-search-for-keyword (regex limit)
   "Match REGEX in buffer until LIMIT.
 Search is case-insensitive."
   (let (match-data-to-set
         found
+        inside-code
         (case-fold-search t))
     (save-match-data
       (while (and (null match-data-to-set)
 		  (re-search-forward regex limit t))
-	    (setq match-data-to-set (match-data))))
+        (save-match-data
+          (setq inside-code (artbollocks-inside-code-p (point))))
+        (unless inside-code
+	  (setq match-data-to-set (match-data)))))
     (when match-data-to-set
       (set-match-data match-data-to-set)
       (goto-char (match-end 0))
