@@ -52,7 +52,7 @@
 ;; M-x artbollocks-mode
 ;;
 ;; NOTE: If you manually turn on artbollocks-mode,
-;; you you might need to force re-fontification initially:
+;; you might need to force re-fontification initially:
 ;;
 ;;   M-x font-lock-fontify-buffer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -229,7 +229,7 @@ entire buffer, subject to narrowing."
     result))
 
 (defun artbollocks-count-sentences (&optional start end)
-  "Count the number of words between START and END."
+  "Count the number of sentences between START and END."
   (interactive-optional-region)
   (let* ((s (or start (point-min)))
          (e (or end (point-max)))
@@ -301,11 +301,10 @@ entire buffer, subject to narrowing."
 
 ;;;###autoload
 (define-minor-mode artbollocks-mode
-  "Minor mode that helps improve your writing style.
-Highlight passive voice, weasel words and artbollocks jargon in text,
-and provide useful text metrics.
+  "Highlight passive voice, weasel words and artbollocks jargon.
+Provide useful text readability metrics evaluation commands.
 
-\\<artbollocks-mode-keymap>"
+\\{artbollocks-mode-keymap}"
   :lighter " AB"
   :keymap artbollocks-mode-keymap
   :group 'artbollocks-mode
