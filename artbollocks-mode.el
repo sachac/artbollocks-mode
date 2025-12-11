@@ -32,9 +32,12 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Extra thanks to:
+;; pierre-rouleau (focus on comments and strings in source code,
+;;   improve customization and code)
 ;; Brian van den Broek (words: contextuality, dialetic, problematize)
 ;; Isabel Brison (words: alterity, mise en abîme)
 ;; mneilsen, behaghel, russell, xfq, gleb, ejmr, tarsius (Emacs Lisp improvements)
+;; jasonhemann, FredArnold, mandarvaze, borowski, jhrr: other fixes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; Commentary:
