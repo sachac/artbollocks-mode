@@ -5,7 +5,7 @@
 ;;
 ;; Author: Rob Myers <rob@robmyers.org>, Sacha Chua <sacha@sachachua.com>
 ;; URL: https://github.com/sachac/artbollocks-mode
-;; Version: 1.1.2
+;; Version: 1.2.0
 ;; Package-Requires: ((emacs "25.1"))
 
 ;; Based on fic-mode.el
