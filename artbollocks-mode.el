@@ -1,4 +1,4 @@
-;;; artbollocks-mode.el --- Improve your writing (especially about art)
+;;; artbollocks-mode.el --- Improve your writing (especially about art) -*- lexical-binding: t; -*-
 ;;
 ;; Copyright (c) 2011,2012 Rob Myers <rob@robmyers.org>
 ;; Minor changes (c) 2012 Sacha Chua <sacha@sachachua.com>
@@ -6,7 +6,8 @@
 ;; Author: Rob Myers <rob@robmyers.org>, Sacha Chua <sacha@sachachua.com>
 ;; URL: https://github.com/sachac/artbollocks-mode
 ;; Version: 1.1.2
-;;
+;; Package-Requires: ((emacs "25.1"))
+
 ;; Based on fic-mode.el
 ;; Copyright (C) 2010, Trey Jackson <bigfaceworm(at)gmail(dot)com>
 ;;
@@ -51,7 +52,7 @@
 ;; M-x artbollocks-mode
 ;;
 ;; NOTE: If you manually turn on artbollocks-mode,
-;; you you might need to force re-fontification initially:
+;; you might need to force re-fontification initially:
 ;;
 ;;   M-x font-lock-fontify-buffer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -569,16 +570,27 @@
 ;; Highlighting
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun artbollocks-inside-code-p (&optional pos)
+  "Return non-nil when point or POS is in code, nil if in comment or string.
+Note that this changes the search match data!"
+  (let* ((pos (or pos (point)))
+         (syntax (syntax-ppss pos)))
+    (and (not (nth 3 syntax))
+         (not (nth 4 syntax)))))
+
 (defun artbollocks-search-for-keyword (regex limit)
   "Match REGEX in buffer until LIMIT.
 Search is case-insensitive."
   (let (match-data-to-set
-        found
+        inside-code
         (case-fold-search t))
     (save-match-data
       (while (and (null match-data-to-set)
 		  (re-search-forward regex limit t))
-	    (setq match-data-to-set (match-data))))
+        (save-match-data
+          (setq inside-code (artbollocks-inside-code-p (point))))
+        (unless inside-code
+	  (setq match-data-to-set (match-data)))))
     (when match-data-to-set
       (set-match-data match-data-to-set)
       (goto-char (match-end 0))
@@ -666,7 +678,7 @@ entire buffer, subject to narrowing."
     result))
 
 (defun artbollocks-count-sentences (&optional start end)
-  "Count the number of words between START and END."
+  "Count the number of sentences between START and END."
   (interactive-optional-region)
   (let* ((s (or start (point-min)))
          (e (or end (point-max)))
@@ -737,7 +749,11 @@ entire buffer, subject to narrowing."
 (define-key artbollocks-mode-keymap (kbd "C-c =") 'artbollocks-grade-level)
 
 ;;;###autoload
-(define-minor-mode artbollocks-mode "Highlight passive voice, weasel words and artbollocks jargon in text, and provide useful text metrics"
+(define-minor-mode artbollocks-mode
+  "Highlight passive voice, weasel words and artbollocks jargon.
+Provide useful text readability metrics evaluation commands.
+
+\\{artbollocks-mode-keymap}"
   :lighter " AB"
   :keymap artbollocks-mode-keymap
   :group 'artbollocks-mode
